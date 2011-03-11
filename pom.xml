@@ -125,6 +125,20 @@
             <version>${jahia.package.version}</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- Quercus dependencies -->
+		<dependency>
+			<groupId>com.caucho</groupId>
+			<artifactId>resin-quercus</artifactId>
+			<version>4.0.13</version>
+		</dependency>
+		<dependency>
+			<groupId>com.caucho</groupId>
+			<artifactId>resin-kernel</artifactId>
+			<version>4.0.13</version>
+		</dependency>
+
+
     </dependencies>
     <build>
         <plugins>
