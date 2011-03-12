@@ -7,7 +7,7 @@
         <property name="alwaysUseFullPath" value="true"/>
         <property name="urlMap">
             <map>
-                <entry key="/*.php">
+                <entry key="**/*.php">
                     <bean class="org.springframework.web.servlet.mvc.ServletWrappingController">
                         <property name="servletClass" value="org.jahia.services.render.scripting.JahiaQuercusServlet"/>
                          <property name="initParameters">
