@@ -9,6 +9,12 @@
 
     <bean id="jahiaQuercusServlet" class="org.jahia.services.render.scripting.quercus.JahiaQuercusServlet" />
 
+    <bean id="quercusScriptEngineFactory" class="com.caucho.quercus.script.QuercusScriptEngineFactory" />
+
+    <bean id="scriptEngineFactoryInitializer" class="org.jahia.services.render.scripting.quercus.ScriptEngineFactoryInitializer">
+        <property name="scriptEngineFactory" ref="quercusScriptEngineFactory" />
+    </bean>
+
     <bean id="httpServiceListener" class="org.jahia.services.render.scripting.quercus.HttpServiceListener">
         <property name="alias" value="/scripts/php" />
         <property name="servlet" ref="jahiaQuercusServlet" />
