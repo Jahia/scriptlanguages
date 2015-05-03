@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!--
     This file is part of Jahia: An integrated WCM, DMS and Portal Solution
     Copyright (C) 2002-2011 Jahia Limited. All rights reserved.
@@ -31,100 +32,128 @@
     for your use, please contact the sales department at sales@jahia.com.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>jahia-modules</artifactId>
         <groupId>org.jahia.modules</groupId>
-        <version>6.5.1.0</version>
+        <version>7.0.0.0</version>
     </parent>
-    <groupId>org.jahia.modules</groupId>
     <artifactId>scriptlanguages</artifactId>
     <name>Script Language Examples</name>
-    <packaging>war</packaging>
+    <version>2.0-SNAPSHOT</version>
+    <packaging>bundle</packaging>
     <description>This module provides examples of using different scripting languages for templating.</description>
+
+    <scm>
+        <connection>scm:git:git@github.com:Jahia/scriptlanguages.git</connection>
+        <developerConnection>scm:git:git@github.com:Jahia/scriptlanguages.git</developerConnection>
+        <url>scm:git:git@github.com:Jahia/scriptlanguages.git</url>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>jahia-releases</id>
+            <url>https://devtools.jahia.com/nexus/content/repositories/jahia-releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>jahia-snapshots</id>
+            <url>https://devtools.jahia.com/nexus/content/repositories/jahia-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+    <repositories>
+        <repository>
+            <id>jahia-public</id>
+            <name>Jahia Public Repository</name>
+            <url>https://devtools.jahia.com/nexus/content/groups/public</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
     <dependencies>
-        <dependency>
-            <groupId>org.jahia.server</groupId>
-            <artifactId>jahia-impl</artifactId>
-            <version>${jahia.package.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jahia.server</groupId>
-            <artifactId>jahia-taglib</artifactId>
-            <version>${jahia.package.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
         <!-- Quercus dependencies -->
-		<dependency>
-			<groupId>com.caucho</groupId>
-			<artifactId>resin-quercus</artifactId>
-			<version>4.0.13</version>
-		</dependency>
-		<dependency>
-			<groupId>com.caucho</groupId>
-			<artifactId>resin-kernel</artifactId>
-			<version>4.0.13</version>
-		</dependency>
+        <dependency>
+            <groupId>com.caucho</groupId>
+            <artifactId>resin-quercus</artifactId>
+            <version>4.0.13</version>
+        </dependency>
+        <dependency>
+            <groupId>com.caucho</groupId>
+            <artifactId>resin-kernel</artifactId>
+            <version>4.0.13</version>
+        </dependency>
 
-
+        <dependency>
+            <groupId>org.eclipse.gemini.blueprint</groupId>
+            <artifactId>gemini-blueprint-core</artifactId>
+            <version>1.0.2.RELEASE</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
+                <!-- Remove this plugin when this module is updated for Jahia 7.1 -->
+                <groupId>org.jahia.server</groupId>
+                <artifactId>jahia-maven-plugin</artifactId>
+                <version>4.4</version>
+                <executions>
+                    <execution>
+                        <id>jahia-version</id>
+                        <goals>
+                            <goal>jahia-version</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>native2ascii</id>
+                        <goals>
+                            <goal>native2ascii</goal>
+                        </goals>
+                        <configuration>
+                            <includes>resources/*.properties</includes>
+                            <defaultPropertiesFileLocale>en</defaultPropertiesFileLocale>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>package-imports</id>
+                        <goals>
+                            <goal>package-imports</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>prepare-package-dependencies</id>
+                        <goals>
+                            <goal>dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <contentDefinitionCapabilitiesActivated>true</contentDefinitionCapabilitiesActivated>
+                        </configuration>
+                        <phase>prepare-package</phase>
+                    </execution>
+                    <execution>
+                        <id>verify-package-dependencies</id>
+                        <goals>
+                            <goal>check-dependencies</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
                 <configuration>
-                    <warSourceExcludes>resources/*.properties</warSourceExcludes>
-                    <webResources>
-                        <resource>
-                          <directory>${project.build.directory}/native2ascii</directory>
-                          <targetPath>resources</targetPath>
-                        </resource>
-                        <resource>
-                            <directory>${project.build.directory}</directory>
-                            <includes>
-                                <include>site/**</include>
-                            </includes>
-                        </resource>
-                    </webResources>
-	                <archive>
-	                    <manifestEntries>
-	                    	<Implementation-Title>${project.name}</Implementation-Title>
-	                    	<Implementation-Version>${project.version}</Implementation-Version>
-	                    	<Implementation-Vendor>${jahia.manifest.vendor.name}</Implementation-Vendor>
-	                    	<Implementation-Vendor-Id>${jahia.manifest.vendor.id}</Implementation-Vendor-Id>
-	                    	<Implementation-URL>${jahia.manifest.vendor.url}</Implementation-URL>
-	                    	<Specification-Title>${project.name}</Specification-Title>
-	                    	<Specification-Version>${project.version}</Specification-Version>
-	                    	<Specification-Vendor>${jahia.manifest.vendor.name}</Specification-Vendor>
-	                        <package-name>${project.name}</package-name>
-	                        <depends>Default Jahia Templates</depends>
-                            <root-folder>${artifactId}</root-folder>
-	                    </manifestEntries>
-	                </archive>
+                    <instructions>
+                        <Jahia-Depends>default</Jahia-Depends>
+                    </instructions>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>project-team</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-        </plugins>
-    </reporting>
 </project>

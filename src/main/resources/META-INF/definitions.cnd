@@ -1,0 +1,18 @@
+<nt = 'http://www.jcp.org/jcr/nt/1.0'>
+<mix = 'http://www.jcp.org/jcr/mix/1.0'>
+<jnt = 'http://www.jahia.org/jahia/nt/1.0'>
+<jmix = 'http://www.jahia.org/jahia/mix/1.0'>
+
+[jmix:scriptLanguagesComponents] > jmix:droppableContent mixin
+
+[jnt:phpNode] > jnt:content, mix:title, jmix:scriptLanguagesComponents
+- phpText (string) i18n
+
+[jnt:javascriptNode] > jnt:content, mix:title, jmix:scriptLanguagesComponents
+- javascriptText (string) i18n
+
+[jnt:velocityNode] > jnt:content, mix:title, jmix:scriptLanguagesComponents
+- velocityText (string) i18n
+
+[jnt:freeMarkerNode] > jnt:content, mix:title, jmix:scriptLanguagesComponents
+- freeMarkerText (string) i18n

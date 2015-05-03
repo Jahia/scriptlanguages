@@ -1,4 +1,4 @@
-package org.jahia.services.render.scripting;
+package org.jahia.services.render.scripting.quercus;
 
 import java.io.File;
 import java.lang.reflect.Constructor;

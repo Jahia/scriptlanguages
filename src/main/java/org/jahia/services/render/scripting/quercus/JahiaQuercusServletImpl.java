@@ -30,7 +30,7 @@
  * for your use, please contact the sales department at sales@jahia.com.
  */
 
-package org.jahia.services.render.scripting;
+package org.jahia.services.render.scripting.quercus;
 
 import com.caucho.quercus.*;
 import com.caucho.quercus.env.Env;
