@@ -15,6 +15,9 @@ import java.lang.reflect.Field;
  * as illustrated here :
  * http://svn.apache.org/repos/asf/felix/trunk/mishell/src/main/java/org/apache/felix/mishell/OSGiScriptEngineManager.java
  * but this requires modifying the ScriptEngineUtils class inside Jahia.
+ *
+ * Also, this hack doesn't support unregistering the ScriptEngineFactory so it is not clear what will happen if we
+ * re-register the same factory multiple times. We should also de-register it normally when the module is stopped.
  */
 public class ScriptEngineFactoryInitializer implements InitializingBean {
 
