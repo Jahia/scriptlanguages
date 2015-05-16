@@ -1,5 +1,6 @@
 package org.jahia.services.render.scripting.quercus;
 
+import com.caucho.quercus.servlet.QuercusServlet;
 import org.eclipse.gemini.blueprint.context.BundleContextAware;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
@@ -46,8 +47,12 @@ public class HttpServiceListener implements BundleContextAware {
         ServiceReference realServiceReference = bundleContext.getServiceReference(HttpService.class.getName());
         HttpService httpService = (HttpService) bundleContext.getService(realServiceReference);
         try {
+            ClassLoader oldClassLoader = Thread.currentThread().getContextClassLoader();
+            Thread.currentThread().setContextClassLoader(this.getClass().getClassLoader());
+            QuercusServlet quercusServlet = (QuercusServlet) servlet;
             httpService.registerServlet(alias, servlet, initParameters, null);
             logger.info("Successfully registered custom servlet at /modules" + alias);
+            Thread.currentThread().setContextClassLoader(oldClassLoader);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (NamespaceException e) {

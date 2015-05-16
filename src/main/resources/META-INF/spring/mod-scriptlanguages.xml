@@ -7,7 +7,7 @@
        http://www.springframework.org/schema/osgi
        http://www.springframework.org/schema/osgi/spring-osgi.xsd">
 
-    <bean id="jahiaQuercusServlet" class="org.jahia.services.render.scripting.quercus.JahiaQuercusServlet" />
+    <bean id="quercusServlet" class="com.caucho.quercus.servlet.QuercusServlet" />
 
     <bean id="quercusScriptEngineFactory" class="com.caucho.quercus.script.QuercusScriptEngineFactory" />
 
@@ -17,7 +17,7 @@
 
     <bean id="httpServiceListener" class="org.jahia.services.render.scripting.quercus.HttpServiceListener">
         <property name="alias" value="/scripts/php" />
-        <property name="servlet" ref="jahiaQuercusServlet" />
+        <property name="servlet" ref="quercusServlet" />
         <property name="initParameters">
             <props>
                 <!--prop key="license-directory">WEB-INF/licenses</prop-->
