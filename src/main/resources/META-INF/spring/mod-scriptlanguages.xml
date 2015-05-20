@@ -9,7 +9,9 @@
 
     <bean id="quercusServlet" class="com.caucho.quercus.servlet.QuercusServlet" />
 
-    <bean id="quercusScriptEngineFactory" class="com.caucho.quercus.script.QuercusScriptEngineFactory" />
+    <bean id="quercusScriptEngineFactory" class="org.jahia.services.render.scripting.quercus.JahiaQuercusScriptEngineFactory">
+        <!--property name="iniFileClassPathLocation" value="META-INF/quercus/php.ini" /-->
+    </bean>
 
     <bean id="scriptEngineFactoryInitializer" class="org.jahia.services.render.scripting.quercus.ScriptEngineFactoryInitializer">
         <property name="scriptEngineFactory" ref="quercusScriptEngineFactory" />
