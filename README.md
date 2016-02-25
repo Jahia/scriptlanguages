@@ -1,15 +1,6 @@
-scriptlanguages
+# scriptlanguages-php
 ===============
 
-This module provides examples of using different scripting languages for templating. Please note that this module is not officially supported.
+This module provides support for using the PHP language for templating in Jahia DX as well as an example showcasing Jahia DX's template engine capability of using PHP language to render Jahia views.
 
-It provides example showcasing Jahia's template engine capability of using different scripting languages to render Jahia views.
-
-In this example you'll find examples using:
-
-* Freemarker
-* Javascript
-* Velocity
-* Php
-
-For PHP support Jahia actually uses the Quercus Java PHP implementation (http://quercus.caucho.com), which might be subject to custom licensing so please check their site for more details.
+Jahia DX uses the Quercus Java PHP implementation (http://quercus.caucho.com), which might be subject to custom licensing so please check their site for more details.
