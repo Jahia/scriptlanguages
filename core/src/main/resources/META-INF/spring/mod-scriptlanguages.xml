@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:osgi="http://www.springframework.org/schema/osgi"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/osgi
+       http://www.springframework.org/schema/osgi/spring-osgi.xsd">
+
+    <bean id="quercusServlet" class="com.caucho.quercus.servlet.QuercusServlet" />
+
+    <bean id="quercusConfiguration" class="org.jahia.services.render.scripting.quercus.JahiaQuercusConfiguration" factory-method="getInstance">
+        <property name="iniFileClassPathLocation" value="${jahiaPhpIniLocation:META-INF/quercus/php.ini}"/>
+    </bean>
+
+    <bean id="httpServiceListener" class="org.jahia.services.render.scripting.quercus.HttpServiceListener">
+        <property name="alias" value="/scripts/php" />
+        <property name="servlet" ref="quercusServlet" />
+        <property name="initParameters">
+            <props>
+                <!--prop key="license-directory">WEB-INF/licenses</prop-->
+            </props>
+        </property>
+    </bean>
+
+    <osgi:reference id="httpService" interface="org.osgi.service.http.HttpService">
+        <osgi:listener ref="httpServiceListener" bind-method="onBind" unbind-method="onUnbind" />
+    </osgi:reference>
+</beans>
