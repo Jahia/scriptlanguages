@@ -1,5 +1,4 @@
 # scriptlanguages-php
-===============
 
 This module provides support for using the PHP language for templating in Jahia DX as well as an example showcasing Jahia DX's template engine capability of using PHP language to render Jahia views.
 
