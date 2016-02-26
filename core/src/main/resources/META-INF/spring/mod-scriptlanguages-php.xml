@@ -10,7 +10,7 @@
     <bean id="quercusServlet" class="com.caucho.quercus.servlet.QuercusServlet" />
 
     <bean id="quercusConfiguration" class="org.jahia.services.render.scripting.quercus.JahiaQuercusConfiguration" factory-method="getInstance">
-        <property name="iniFileClassPathLocation" value="${jahiaPhpIniLocation:META-INF/quercus/php.ini}"/>
+        <property name="iniFileClassPathLocation" value="${jahia.scripts.php.ini.location:META-INF/quercus/php.ini}"/>
     </bean>
 
     <bean id="httpServiceListener" class="org.jahia.services.render.scripting.quercus.HttpServiceListener">
