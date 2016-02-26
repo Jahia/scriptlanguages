@@ -81,11 +81,14 @@ public class JahiaQuercusScriptEngineFactoryConfigurator implements BundleScript
 
     @Override
     public void configure(JahiaQuercusScriptEngineFactory jahiaQuercusScriptEngineFactory, Bundle bundle, ClassLoader classLoader) {
-        jahiaQuercusScriptEngineFactory.setIniFile(JahiaQuercusConfiguration.getInstance().getIniFileClassPathLocation());
     }
 
     @Override
     public void destroy(JahiaQuercusScriptEngineFactory jahiaQuercusScriptEngineFactory) {
+    }
 
+    @Override
+    public void configurePreScriptEngineCreation(JahiaQuercusScriptEngineFactory scriptEngineFactory) {
+        scriptEngineFactory.setIniFile(JahiaQuercusConfiguration.getInstance().getIniFileClassPathLocation());
     }
 }
