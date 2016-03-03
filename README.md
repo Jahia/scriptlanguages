@@ -16,3 +16,24 @@ You can specify a location (within the bundle's classpath) for a `.ini` file con
  * Had trouble with the working directory when trying to integrate with phpBB.
 
  * URLs will need to be rewritten somehow.
+
+## Example
+
+We have added exception handling, but it is not required, only to illustrate that Java exceptions may be code inside the PHP code.
+
+The integration with PHP is not done through the JSR-223 API because it might need to integrate with existing PHP tools, which will have more advanced requirements. We have
+integrated the Quercus PHP Java implementation that provides advanced functions. Note that PHP to Java compilation is not supported, since we only provide the open-source
+implementation. You can find more information concerning the commercial implementation's advanced features here: http://www.caucho.com/products/quercus/
+
+```php
+<?php
+echo "This is a PHP module ! Here below we are displaying a JCR node in PHP...<br/>";
+
+try {
+    echo $currentNode->getProperty("phpText")->getValue()->getString();
+} catch (Exception $e) {
+    echo 'Caught exception: ',  $e->getMessage(), "\n";
+}
+
+?>
+```
