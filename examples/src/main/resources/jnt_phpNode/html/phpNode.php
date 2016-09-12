@@ -6,7 +6,7 @@ $z = min($x,$y);
 echo $z;
 echo "<br/>"
 try {
-    echo $currentNode->getProperty("phpText")->getValue()->getString();
+    echo $currentNode->getPropertyAsString("phpText");
 } catch (Exception $e) {
     echo 'Caught exception: ',  $e->getMessage(), "\n";
 }
