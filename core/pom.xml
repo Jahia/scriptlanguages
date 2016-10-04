@@ -53,9 +53,9 @@
                 <configuration>
                     <instructions>
                         <Jahia-Depends>default</Jahia-Depends>
+                        <Jahia-Module-Type>system</Jahia-Module-Type>
                         <Embed-Dependency>*; scope=compile|runtime; type=!pom; inline=false</Embed-Dependency>
                         <Embed-Transitive>true</Embed-Transitive>
-                        <Dynamic-ImportPackage>*</Dynamic-ImportPackage>
                     </instructions>
                 </configuration>
             </plugin>
