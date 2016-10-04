@@ -1,6 +1,9 @@
 # scriptlanguages-php
 
 This module provides support for using the PHP language for templating in Jahia DX as well as an example showcasing Jahia DX's template engine capability of using PHP language to render Jahia views.
+This module should mostly be considered as a proof-of-concept. It is not recommended to use this code in a production
+ environment.
+For more information about Jahia Digital Experience Manager (DX), please go to: https://www.jahia.com/platform/digital-experience-manager
 
 Jahia DX uses the Quercus Java PHP implementation (http://quercus.caucho.com), which might be subject to custom licensing so please check their site for more details.
 
