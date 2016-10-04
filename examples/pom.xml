@@ -23,9 +23,6 @@
                 <configuration>
                     <instructions>
                         <Jahia-Depends>default,scriptlanguages-php</Jahia-Depends>
-                        <Embed-Dependency>*; scope=compile|runtime; type=!pom; inline=false</Embed-Dependency>
-                        <Embed-Transitive>true</Embed-Transitive>
-                        <Dynamic-ImportPackage>*</Dynamic-ImportPackage>
                         <Jahia-Module-Scripting-Views>php</Jahia-Module-Scripting-Views>
                     </instructions>
                 </configuration>
